@@ -62,6 +62,50 @@ public class AdminController {
 				  return "adminscreen";
 		    }
 	}
+	@RequestMapping("/remove")
+	public String removeStudent(@RequestParam("rollno") int rollno,Model m) {
+		ssi.removeStudent(rollno);
+		List<Student> list=ssi.getAllStudents();
+		m.addAttribute("data", list);
+		return "adminscreen";
+	}
+	
+	
+	@RequestMapping("/fees")
+	public String onFees(@RequestParam("rollno") int rollno,Model m) {
+		Student s=ssi.getSingleStudent(rollno);
+		m.addAttribute("st", s);
+		return "fees";
+	}
+
+	@RequestMapping("/payfees")
+	public String payFees(@RequestParam("rollno") int rollno,@RequestParam("ammount") double ammount,Model m) {
+		
+		     ssi.payFees(rollno,ammount);
+		
+		List<Student> list=ssi.getAllStudents();
+		m.addAttribute("data", list);
+		return "adminscreen";
+	}
+	
+	@RequestMapping("/shiftbatch")
+	public String onShiftBatch(@RequestParam("rollno") int rollno,Model m) {
+		Student s=ssi.getSingleStudent(rollno);
+		m.addAttribute("st", s);
+		return "shiftbatch";
+	}
+
+	@RequestMapping("/updatebatch")
+	public String updateBatch(@RequestParam("rollno") int rollno,@RequestParam("batchNumber") String batchNumber,Model m) {
+		
+		     ssi.updateBatch(rollno,batchNumber);
+		
+		List<Student> list=ssi.getAllStudents();
+		m.addAttribute("data", list);
+		return "adminscreen";
+	}	
+	
+	
 	
 	
 }

@@ -35,6 +35,23 @@ form {
 	background-repeat: no-repeat;
 }
 </style>
+   <script type="text/javascript">
+   
+       function removeStudent() {
+		document.fn.action="remove";
+		document.fn.submit();
+	}
+       function fees() {
+   		document.fn.action="fees";
+   		document.fn.submit();
+   	}
+       function shiftBatch() {
+      		document.fn.action="shiftbatch";
+      		document.fn.submit();
+      	}
+   
+   </script>
+
 </head>
 <body>
 	<div class="card">
@@ -184,7 +201,7 @@ form {
 			<h1 class="text-center">Student Details..!</h1>
 
 			<div class="text-center w-100">
-				<form action="search" class="w-100">
+				<form action="search" name="fn" class="w-100">
 					<select class="select form-control-sm border border-primary"
 						name="batchNumber">
 						<option value="#" >Select Batch Number</option>
@@ -196,7 +213,7 @@ form {
 
 					</select>
 					<button class="btn btn-outline-primary mb-1">Search</button>
-				</form>
+				
 				<marquee>
 					<h1 style="color: red;">${message }</h1>
 				</marquee>
@@ -217,6 +234,7 @@ form {
 						<th>Bath No</th>
 						<th>Mode</th>
 						<th>Fess Recived</th>
+						<th>select</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -232,13 +250,14 @@ form {
 							<td>${s.batchNumber}</td>
 							<td>${s.batchMode}</td>
 							<td>${s.feesPaid}</td>
+							<td><input type="radio" name="rollno" value="${s.rollno}"></td>
 							<td>
 
 								<div class="btn-group btn-group-sm" role="group"
 									aria-label="...">
-									<button class="btn btn-outline-success">Pay Fees</button>
-									<button class="btn btn-outline-primary">Shift Batch</button>
-									<button class="btn btn-outline-danger">Remove</button>
+									<button class="btn btn-outline-success" onclick="fees()">Pay Fees</button>
+									<button class="btn btn-outline-primary" onclick="shiftBatch()">Shift Batch</button>
+									<button class="btn btn-outline-danger" onclick="removeStudent()">Remove</button>
 
 								</div>
 
@@ -250,6 +269,7 @@ form {
 				</tbody>
 
 			</table>
+			</form>
 		</section>
 
 

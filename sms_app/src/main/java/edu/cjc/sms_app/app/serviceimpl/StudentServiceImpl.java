@@ -30,4 +30,30 @@ public class StudentServiceImpl implements StudentServiceI{
 		return sr.findAllByBatchNumber(batchNumber);
 	}
 
+	@Override
+	public void removeStudent(int rollno) {
+		sr.deleteById(rollno);
+		
+	}
+
+	@Override
+	public Student getSingleStudent(int rollno) {
+		       Student s=sr.findById(rollno).get();
+		return s;
+	}
+
+	@Override
+	public void payFees(int rollno, double ammount) {
+                   Student s=sr.findById(rollno).get();
+                    s.setFeesPaid(s.getFeesPaid()+ammount);
+                    sr.save(s);
+	}
+
+	@Override
+	public void updateBatch(int rollno, String batchNumber) {
+		 Student s=sr.findById(rollno).get();
+         s.setBatchNumber(batchNumber);
+         sr.save(s);
+	}
+
 }
